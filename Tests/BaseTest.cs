@@ -1,10 +1,10 @@
 ﻿using System;
+using MyFramework.Enums;
+using MyFramework.Utils;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using ShopByProject.Enums;
-using ShopByProject.Utils;
 
-namespace ShopByTests
+namespace Tests
 {
     [TestFixture]
     public class BaseTest

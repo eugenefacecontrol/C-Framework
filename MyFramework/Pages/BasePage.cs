@@ -1,13 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MyFramework.Utils;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
-namespace ShopByProject.Pages
+namespace MyFramework.Pages
 {
     public class BasePage
     {
+        protected IWebDriver Driver;
 
+        protected WebDriverWait WebDriverWait;
+        protected DefaultWait<IWebElement> DefaultWait;
+
+        public BasePage()
+        {
+            Driver = Browser.WebDriver;
+            WebDriverWait = new WebDriverWait(Driver, TimeSpan.FromSeconds(TestSettings.ExplicitTimeout));
+        }
     }
 }

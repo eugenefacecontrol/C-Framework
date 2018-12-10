@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ShopByProject.Utils
+namespace MyFramework.Utils
 {
     public class Wait
     {

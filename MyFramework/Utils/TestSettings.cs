@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using ShopByProject.Enums;
+using MyFramework.Enums;
 
-namespace ShopByProject.Utils
+namespace MyFramework.Utils
 {
     public static class TestSettings
     {

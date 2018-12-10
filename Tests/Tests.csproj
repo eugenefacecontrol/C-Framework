@@ -64,8 +64,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShopByProject\MyFramework.csproj">
-      <Project>{420DE9A3-A76A-4864-84FD-3DBDD4BFD966}</Project>
+    <ProjectReference Include="..\MyFramework\MyFramework.csproj">
+      <Project>{420de9a3-a76a-4864-84fd-3dbdd4bfd966}</Project>
       <Name>MyFramework</Name>
     </ProjectReference>
   </ItemGroup>

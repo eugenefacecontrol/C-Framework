@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
+using MyFramework.Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
-using ShopByProject.Enums;
 
-namespace ShopByProject.Utils
+namespace MyFramework.Utils
 {
-    public static class Browser
+    public class Browser
     {
-        public static IWebDriver WebDriver { get; private set; }
+        [ThreadStatic] public static IWebDriver WebDriver;
         private static string DefaultDirectory => AppDomain.CurrentDomain.BaseDirectory;
-        private const string RelativePath = @"..\..\..\ShopByProject";
+        private const string RelativePath = @"..\..\..\MyFramework";
 
         public static void Init(BrowserEnum browserName)
         {

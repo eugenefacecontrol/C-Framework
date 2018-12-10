@@ -1,4 +1,4 @@
-﻿namespace ShopByProject.Enums
+﻿namespace MyFramework.Enums
 {
     public enum BrowserEnum
     {
