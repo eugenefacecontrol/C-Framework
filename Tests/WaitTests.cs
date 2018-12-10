@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using ShopByProject.Utils;
 
 namespace ShopByTests
 {
@@ -12,6 +13,7 @@ namespace ShopByTests
         [Test]
         public void WebDriverWaitUsage()
         {
+            Browser.GoTo(TestSettings.BaseURL);
 
         }
     }
