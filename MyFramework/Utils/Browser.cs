@@ -22,6 +22,7 @@ namespace MyFramework.Utils
 
         public static void Init(BrowserEnum browserName)
         {
+            var options = new ChromeOptions();
             switch (browserName)
             {
                 case BrowserEnum.Chrome:
@@ -31,15 +32,12 @@ namespace MyFramework.Utils
                 case BrowserEnum.FireFox:
                     break;
                 case BrowserEnum.Grid:
-                    WebDriver = new ChromeDriver();
-                    DesiredCapabilities capabilities = new DesiredCapabilities();
-                    capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
-                    capabilities.SetCapability(CapabilityType.Version, "");
-                    capabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
-                    WebDriver = new RemoteWebDriver(new Uri(Hub), capabilities);
+                    options.AddAdditionalCapability(CapabilityType.BrowserName, "chrome");
+                    options.AddAdditionalCapability(CapabilityType.Version, "");
+                    options.AddAdditionalCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
+                    WebDriver = new RemoteWebDriver(new Uri(Hub), options);
                     break;
                 case BrowserEnum.SauceLabs:
-                    var options = new ChromeOptions();
                     options.AddAdditionalCapability(CapabilityType.Platform, new Platform(PlatformType.Windows), true);
                     options.AddAdditionalCapability(CapabilityType.Version, "", true);
 
