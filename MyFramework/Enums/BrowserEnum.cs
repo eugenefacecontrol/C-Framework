@@ -4,6 +4,7 @@
     {
         Chrome,
         FireFox,
-        Grid
+        Grid,
+        SauceLabs
     }
 }

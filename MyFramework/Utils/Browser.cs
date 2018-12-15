@@ -26,6 +26,8 @@ namespace MyFramework.Utils
                     break;
                 case BrowserEnum.Grid:
                     break;
+                case BrowserEnum.SauceLabs:
+                    break;
                 default:
                     throw new Exception("Unknown browser!");
             }
