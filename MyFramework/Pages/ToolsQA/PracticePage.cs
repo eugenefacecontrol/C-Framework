@@ -30,7 +30,7 @@ namespace MyFramework.Pages.ToolsQA
             DefaultWait = new DefaultWait<IWebElement>(clock)
             {
                 Timeout = TimeSpan.FromMinutes(2),
-                PollingInterval = TimeSpan.FromMilliseconds(250)
+                PollingInterval = TimeSpan.FromSeconds(1)
             };
 
             var waiter = new Func<IWebElement, bool>(element =>
