@@ -12,8 +12,6 @@ namespace Tests
     {
 
         public string Id { get; set; }
-        public static string UserName = "EugeneFaceControl";
-        public static string AccessKey = "78941e8d-bfad-4208-960d-aaced86db1b0";
 
         [SetUp]
         public void SetUp()

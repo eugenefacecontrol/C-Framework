@@ -19,10 +19,21 @@ namespace MyFramework.Utils
 
         public static double ExplicitTimeout => double.Parse(GetSetting("explicitTimeout"));
         public static double ImplicitTimeout => double.Parse(GetSetting("implicitTimeout"));
+        public static string SauceUsername => GetSetting("sauceUsername");
+        public static string SauceAccessKey => GetSetting("sauceAccessKey");
 
         private static string GetSetting(string key)
         {
             return ConfigurationManager.AppSettings[key];
+        }
+
+        public static void GetAllSettings()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            foreach (var key in appSettings.AllKeys)
+            {
+                Console.WriteLine($"{appSettings[key]}: {key}");
+            }
         }
     }
 }

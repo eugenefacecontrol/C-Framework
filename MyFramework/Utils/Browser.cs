@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using MyFramework.Enums;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -14,9 +15,7 @@ namespace MyFramework.Utils
         [ThreadStatic] public static IWebDriver WebDriver;
         private static string DefaultDirectory => AppDomain.CurrentDomain.BaseDirectory;
         private const string RelativePath = @"..\..\..\MyFramework";
-        private static string UserName = "EugeneFaceControl";
-        private static string AccessKey = "78941e8d-bfad-4208-960d-aaced86db1b0";
-        private static string Url = $"https://{UserName}:{AccessKey}@ondemand.saucelabs.com:443/wd/hub";
+        private static string Url = $"https://ondemand.saucelabs.com:443/wd/hub";
         private static string Hub = "http://localhost:4444/wd/hub";
 
 
@@ -32,16 +31,18 @@ namespace MyFramework.Utils
                 case BrowserEnum.FireFox:
                     break;
                 case BrowserEnum.Grid:
-                    options.AddAdditionalCapability(CapabilityType.BrowserName, "chrome");
-                    options.AddAdditionalCapability(CapabilityType.Version, "");
-                    options.AddAdditionalCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
+                    options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
+                    options.AddAdditionalCapability(CapabilityType.Platform, "Windows 10", true);
                     WebDriver = new RemoteWebDriver(new Uri(Hub), options);
                     break;
                 case BrowserEnum.SauceLabs:
+                    options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
                     options.AddAdditionalCapability(CapabilityType.Platform, new Platform(PlatformType.Windows), true);
-                    options.AddAdditionalCapability(CapabilityType.Version, "", true);
+                    options.AddAdditionalCapability("username", TestSettings.SauceUsername, true);
+                    options.AddAdditionalCapability("accessKey", TestSettings.SauceAccessKey, true);
+                    options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name, true);
 
-                    WebDriver = new RemoteWebDriver(new Uri(Url), options);
+                    WebDriver = new RemoteWebDriver(new Uri(Url), options.ToCapabilities());
                     break;
                 default:
                     throw new Exception("Unknown browser!");
