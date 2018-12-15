@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    [Parallelizable(ParallelScope.Fixtures)]
+    [Parallelizable(ParallelScope.Children)]
     public class WaitTests : BaseTest
     {
         [Test]
