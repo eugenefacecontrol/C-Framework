@@ -10,7 +10,6 @@ namespace Tests
     [TestFixture]
     public class BaseTest
     {
-
         public string Id { get; set; }
 
         [SetUp]
