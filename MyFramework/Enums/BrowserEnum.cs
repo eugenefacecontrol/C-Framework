@@ -5,6 +5,7 @@
         Chrome,
         FireFox,
         Grid,
-        SauceLabs
+        SauceLabs,
+        BrowserStack
     }
 }
