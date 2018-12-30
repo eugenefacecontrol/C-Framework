@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.TfsTests
 {
     public class TfsTests
     {
@@ -34,17 +33,18 @@ namespace Tests
             var allBugsList = allBugsCollection.Cast<WorkItem>().ToList();
             var myBugs = allBugsList.Where(x => x.CreatedBy.Contains("Sheima")).ToList();
 
-            using (FileStream fs = new FileStream($@"c:\Users\Yauhe\test{id}.html", FileMode.Create))
+            using (FileStream fs = new FileStream($@"D:\TableWithBugs\test{id}.html", FileMode.Create))
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    w.WriteLine("<style>");
-                    w.WriteLine("table,");
-                    w.WriteLine("th,");
-                    w.WriteLine("td {");
-                    w.WriteLine("border: 1px solid black;");
-                    w.WriteLine("}");
-                    w.WriteLine("</style>");
+//                    w.WriteLine("<style>");
+//                    w.WriteLine("table,");
+//                    w.WriteLine("th,");
+//                    w.WriteLine("td {");
+//                    w.WriteLine("border: 1px solid black;");
+//                    w.WriteLine("}");
+//                    w.WriteLine("</style>");
+                    w.WriteLine("<html>");
                     w.WriteLine("<body>");
                     w.WriteLine("<table>");
                     w.WriteLine("<tr>");
@@ -62,6 +62,7 @@ namespace Tests
                     }
                     w.WriteLine("</table>");
                     w.WriteLine("</body>");
+                    w.WriteLine("</html>");
                 }
             }
         }
