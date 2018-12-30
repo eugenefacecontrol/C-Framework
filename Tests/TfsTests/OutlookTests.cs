@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
 using Outlook = Microsoft.Office.Interop.Outlook;
@@ -10,6 +11,8 @@ namespace Tests.TfsTests
     public class OutlookTests
     {
         private Outlook.Application app;
+        const string path = @"D:\TableWithBugs\test1230025835.html";
+
         [Test]
         public void OutlookTest()
         {
@@ -17,12 +20,24 @@ namespace Tests.TfsTests
             Outlook.MailItem mailItem = app.CreateItem(Outlook.OlItemType.olMailItem);
             mailItem.Subject = "This is subject";
             mailItem.To = "ysh@leapwork.com";
-            const string path = @"D:\TableWithBugs\test1230030746.html";
-            mailItem.Body = File.ReadAllText(path);
+            mailItem.HTMLBody = File.ReadAllText(path);
+//            mailItem.Body = 
 //            mailItem.Attachments.Add(path);
             mailItem.Importance = Outlook.OlImportance.olImportanceHigh;
             mailItem.Display(false);
             mailItem.Send();
+        }
+
+        [Test]
+        public void SendMessageWithMail()
+        {
+            MailMessage msg = new MailMessage("zhenya113@mail.ru", "ysh@leapwork.com");
+            msg.IsBodyHtml = true;
+            msg.Subject = "Test subject";
+            msg.Body = File.ReadAllText(path);
+
+            SmtpClient mailClient = new SmtpClient("smtp.mail.ru", 993);
+            mailClient.Send(msg);
         }
 
         [TearDown]
