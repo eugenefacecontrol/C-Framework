@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
+using MyFramework.Utils;
 using NUnit.Framework;
 
 namespace Tests.TfsTests
@@ -22,11 +23,7 @@ namespace Tests.TfsTests
 
             var workItemStore = teamProjectCollection.GetService<WorkItemStore>();
 
-            Query query = new Query(
-                workItemStore,
-                "select * from issue where System.TeamProject = @project and System.WorkItemType = @type",
-                new Dictionary<string, string> { { "project", "LeapTest" }, { "type", "Bug" } }
-            );
+            var query = workItemStore.GetBugs();
 
             var allBugsCollection = query.RunQuery();
 
@@ -37,13 +34,13 @@ namespace Tests.TfsTests
             {
                 using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                 {
-//                    w.WriteLine("<style>");
-//                    w.WriteLine("table,");
-//                    w.WriteLine("th,");
-//                    w.WriteLine("td {");
-//                    w.WriteLine("border: 1px solid black;");
-//                    w.WriteLine("}");
-//                    w.WriteLine("</style>");
+                    w.WriteLine("<style>");
+                    w.WriteLine("table,");
+                    w.WriteLine("th,");
+                    w.WriteLine("td {");
+                    w.WriteLine("border: 1px solid black;");
+                    w.WriteLine("}");
+                    w.WriteLine("</style>");
                     w.WriteLine("<html>");
                     w.WriteLine("<body>");
                     w.WriteLine("<table>");
@@ -66,6 +63,8 @@ namespace Tests.TfsTests
                 }
             }
         }
+
+        
 
 
         public static void SetWindowsCreds(string url, string username, string password)

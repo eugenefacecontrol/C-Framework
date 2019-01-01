@@ -10,17 +10,16 @@ namespace Tests.TfsTests
 {
     public class OutlookTests
     {
-        private Outlook.Application app;
-        const string path = @"D:\TableWithBugs\test1230025835.html";
+        private const string Path = @"D:\TableWithBugs\test1230025835.html";
 
         [Test]
         public void OutlookTest()
         {
-            app = new Outlook.Application();
+            var app = new Outlook.Application();
             Outlook.MailItem mailItem = app.CreateItem(Outlook.OlItemType.olMailItem);
             mailItem.Subject = "This is subject";
             mailItem.To = "ysh@leapwork.com";
-            mailItem.HTMLBody = File.ReadAllText(path);
+            mailItem.HTMLBody = File.ReadAllText(Path);
 //            mailItem.Body = 
 //            mailItem.Attachments.Add(path);
             mailItem.Importance = Outlook.OlImportance.olImportanceHigh;
@@ -34,7 +33,7 @@ namespace Tests.TfsTests
             MailMessage msg = new MailMessage("zhenya113@mail.ru", "ysh@leapwork.com");
             msg.IsBodyHtml = true;
             msg.Subject = "Test subject";
-            msg.Body = File.ReadAllText(path);
+            msg.Body = File.ReadAllText(Path);
 
             SmtpClient mailClient = new SmtpClient("smtp.mail.ru", 993);
             mailClient.Send(msg);
