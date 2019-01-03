@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,13 +12,15 @@ namespace Tests.TfsTests
 {
     public class TfsTests
     {
+        private const string Url = "https://leaptestcompany.visualstudio.com";
+
         [Test]
         public void TfsTest()
         {
             var id = DateTime.Now.ToString("MMddHHmmss");
             var teamProjectCollection =
                 TfsTeamProjectCollectionFactory.GetTeamProjectCollection(
-                    new Uri("https://leaptestcompany.visualstudio.com"));
+                    new Uri(Url));
 
             var workItemStore = teamProjectCollection.GetService<WorkItemStore>();
 
@@ -30,9 +31,9 @@ namespace Tests.TfsTests
             var allBugsList = allBugsCollection.Cast<WorkItem>().ToList();
             var myBugs = allBugsList.Where(x => x.CreatedBy.Contains("Sheima")).ToList();
 
-            using (FileStream fs = new FileStream($@"D:\TableWithBugs\test{id}.html", FileMode.Create))
+            using (var fs = new FileStream($@"C:\TableWithBugs\test{id}.html", FileMode.Create))
             {
-                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                using (var w = new StreamWriter(fs, Encoding.UTF8))
                 {
                     w.WriteLine("<style>");
                     w.WriteLine("table,");
@@ -63,9 +64,6 @@ namespace Tests.TfsTests
                 }
             }
         }
-
-        
-
 
         public static void SetWindowsCreds(string url, string username, string password)
         {

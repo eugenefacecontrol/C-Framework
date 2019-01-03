@@ -1,7 +1,6 @@
 ﻿using System;
 using MyFramework.Enums;
 using MyFramework.Utils;
-using System.Net;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
