@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi.Models;
+using Microsoft.VisualStudio.Services.Client;
 using MyFramework.Utils;
 using NUnit.Framework;
+using WorkItem = Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem;
 
 namespace Tests.TfsTests
 {
@@ -63,6 +68,36 @@ namespace Tests.TfsTests
                     w.WriteLine("</html>");
                 }
             }
+        }
+
+        [Test]
+        public void RestExample()
+        {
+            var connection = new VssConnection(new Uri(Url), new VssClientCredentials());
+            var witClient = connection.GetClient<WorkItemTrackingHttpClient>();
+            var queryHierarchyItems = witClient.GetQueriesAsync("LeapTest", depth: 2).Result;
+            var myQueriesFolder = queryHierarchyItems.FirstOrDefault(qhi => qhi.Name.Equals("My Queries"));
+            if (myQueriesFolder != null)
+            {
+                var queryName = "REST Sample";
+                QueryHierarchyItem newBugsQuery = null;
+                if (myQueriesFolder.Children != null)
+                {
+                    newBugsQuery = myQueriesFolder.Children.FirstOrDefault(qhi => qhi.Name.Equals(queryName));
+                }
+
+                if (newBugsQuery == null)
+                {
+                    newBugsQuery = new QueryHierarchyItem()
+                    {
+                        Name = queryName,
+                        Wiql = "SELECT * from issue where System.TeamProject = @project and System.WorkItemType = @type",
+                        IsFolder = false
+                    };
+//                    newBugsQuery = witClient.CreateQueryAsync(newBugsQuery, teamProjectNam);
+                }
+            }
+
         }
 
         public static void SetWindowsCreds(string url, string username, string password)
