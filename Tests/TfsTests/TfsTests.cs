@@ -94,7 +94,7 @@ namespace Tests.TfsTests
                         Wiql = "SELECT * from issue where System.TeamProject = @project and System.WorkItemType = @type",
                         IsFolder = false
                     };
-//                    newBugsQuery = witClient.CreateQueryAsync(newBugsQuery, teamProjectNam);
+                    newBugsQuery = witClient.CreateQueryAsync(newBugsQuery, "LeapTest", myQueriesFolder.Name).Result;
                 }
             }
 
