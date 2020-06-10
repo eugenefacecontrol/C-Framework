@@ -197,6 +197,8 @@
     <Compile Include="Enums\BrowserEnum.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CodePenIO\MyPage.cs" />
+    <Compile Include="Pages\DevCompanies\DevCompaniesPage.cs" />
+    <Compile Include="Pages\DevCompanies\PageOfCompany.cs" />
     <Compile Include="Pages\Google\GoogleHomePage.cs" />
     <Compile Include="Pages\ToolsQA\PracticePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
