@@ -60,6 +60,12 @@ namespace MyFramework.Utils
             WebDriver.Manage().Window.Maximize();
         }
 
+        public static void ChangeTab(int tabNumber = 0)
+        {
+            var tabs = WebDriver.WindowHandles;
+            WebDriver.SwitchTo().Window(tabs[tabNumber]);
+        }
+
         public static void FocusOnElement(IWebElement element)
         {
             var action = new Actions(WebDriver);
@@ -74,7 +80,7 @@ namespace MyFramework.Utils
         public static void Close()
         {
             WebDriver.Close();
-            WebDriver.Quit();
+            //WebDriver.Quit();
         }
 
         public static IWebDriver SwitchToFrame(IWebElement element) => WebDriver.SwitchTo().Frame(element);

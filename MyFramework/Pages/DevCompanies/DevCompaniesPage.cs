@@ -1,4 +1,5 @@
 ﻿using System;
+using MyFramework.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -8,11 +9,17 @@ namespace MyFramework.Pages.DevCompanies
     {
         private readonly By allNames = By.XPath("//tbody/tr/td[1]/a");
 
-        public PageOfCompany ClickEveryName()
+        public void ClickEveryName()
         {
-            var a = Driver.FindElements(allNames);
-            a[0].Click();
-            return new PageOfCompany();
+            var allNamesElements = Driver.FindElements(allNames);
+
+            foreach(var element in allNamesElements)
+            {
+                Browser.ExecuteJs("window.open(arguments[0].href, '_blank')", element);
+                var pageOfCompany = new PageOfCompany();
+                pageOfCompany.GetContacts();
+            }
+            //a[0].Click();
         }
     }
 }

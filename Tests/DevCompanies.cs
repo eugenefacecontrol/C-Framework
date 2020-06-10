@@ -14,8 +14,7 @@ namespace Tests
             Browser.Init(MyFramework.Enums.BrowserEnum.Chrome);
             Browser.GoTo(baseUrl);
             var practicePage = new DevCompaniesPage();
-            var pageOfCompany = practicePage.ClickEveryName();
-            pageOfCompany.GetContacts();
+            practicePage.ClickEveryName();
         }
     }
 }
