@@ -15,12 +15,13 @@ namespace MyFramework.Pages.DevCompanies
         {
             var waiter = new Func<IWebDriver, bool>(driver =>
             {
-                var text = Driver.FindElement(contacts);
-                if (text.Displayed)
+                var text = Driver.FindElement(contacts).Text;
+                if (!text.Contains("⋯"))
                 {
                     return true;
                 }
                 Console.WriteLine($"Current time is : {text}");
+//                Browser.Refresh();
                 return false;
             });
 

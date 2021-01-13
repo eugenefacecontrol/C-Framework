@@ -17,7 +17,7 @@ namespace MyFramework.Utils
         private static string DefaultDirectory => AppDomain.CurrentDomain.BaseDirectory;
         private const string RelativePath = @"..\..\..\MyFramework";
         private static readonly string UrlSauceLabs = $"https://ondemand.saucelabs.com:443/wd/hub";
-        private static string Hub = "http://localhost:4444/wd/hub";
+        private static string Hub = "http://win10prox64.westeurope.cloudapp.azure.com:4444/wd/hub";
 
         public static void Init(BrowserEnum browserName)
         {
@@ -75,6 +75,11 @@ namespace MyFramework.Utils
         public static void GoTo(string url)
         {
             WebDriver.Url = url;
+        }
+
+        public static void Refresh()
+        {
+            WebDriver.Navigate().Refresh();
         }
 
         public static void Close()
