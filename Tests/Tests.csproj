@@ -232,7 +232,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SauceLabsTests.cs" />
     <Compile Include="SettigsChecker.cs" />
-    <Compile Include="TestSuiteRefactored.cs" />
+    <Compile Include="TestCaseRefactored.cs" />
     <Compile Include="TfsTests\OutlookTests.cs" />
     <Compile Include="TfsTests\TfsTests.cs" />
     <Compile Include="TestSuite.cs" />

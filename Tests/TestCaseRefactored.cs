@@ -19,7 +19,6 @@ namespace Tests
             var options = new ChromeOptions();
             var driverService = ChromeDriverService.CreateDefaultService(@"\\YauheniSheima\LEAPWORK\SeleniumCodeGenerator\Release\App_Data", "chromedriver.exe");
             webDriver = new ChromeDriver(driverService, options);
-
         }
         private void ValidatationMethod1()
         {
@@ -35,7 +34,7 @@ namespace Tests
         [TestMethod]
         public void Execute()
         {
-            ValidationMethod1();
+            //            ValidationMethod1();
         }
     }
 }
