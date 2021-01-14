@@ -10,11 +10,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
     [TestClass]
-    class TestSuite
+    class TestCase
     {
         private IWebDriver webDriver;
 
-        public TestSuite()
+        public TestCase()
         {
             var options = new ChromeOptions();
             var driverService = ChromeDriverService.CreateDefaultService(@"\\YauheniSheima\LEAPWORK\SeleniumCodeGenerator\Release\App_Data", "chromedriver.exe");
